@@ -1,18 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public class MovingPlatform : MonoBehaviour
 {
+    [SerializeField]
+    private WaypointPath _waypointPath;
+
+    [SerializeField]
     public float _speed;
-    
-    private float _previousWaypoint;
-    private float _nextWaypoint;
-    private float _targetWaypoint;
-    private float _targetWaypointIndex;
-    private float _waypointPath;
-    private float _getNextWaypoint;
-    private float _getWaypoint;
+
+    private int _targetWaypointIndex;
+
+    private Transform _previousWaypoint;
+    private Transform _targetWaypoint;
+
     private float _timeToWaypoint;
     private float _elapsedTime;
     void Start()
@@ -51,9 +54,15 @@ public class MovingPlatform : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        Debug.Log("oops");
         if (other.gameObject.tag == "Player") 
         { 
-            other.transform.SetParent(transform);
+            other.transform.parent.SetParent(transform);
         }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+            other.transform.SetParent(null);
     }
 }
