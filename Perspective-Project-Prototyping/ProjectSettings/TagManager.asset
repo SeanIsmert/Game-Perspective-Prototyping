@@ -6,6 +6,10 @@ TagManager:
   tags:
   - CinemachineTarget
   - PowerUp
+  - Pushable
+  - Death
+  - Checkpoint
+  - Weight
   layers:
   - Default
   - TransparentFX
